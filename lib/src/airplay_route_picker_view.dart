@@ -51,7 +51,7 @@ class AirPlayRoutePickerView extends StatefulWidget {
   final VoidCallback? onShowPickerView;
 
   /// The route picker view will finished presenting routes to the user.
-  final VoidCallback? onClosePickerView;
+  final void Function(dynamic)? onClosePickerView;
 
   /// This function checks the presence of all the option attribute,
   /// and only packs the ones available. That helps the error handling
@@ -105,7 +105,7 @@ class _AirPlayRoutePickerViewState extends State<AirPlayRoutePickerView> {
         widget.onShowPickerView?.call();
         break;
       case 'onClosePickerView':
-        widget.onClosePickerView?.call();
+        widget.onClosePickerView?.call(call.arguments);
         break;
     }
   }

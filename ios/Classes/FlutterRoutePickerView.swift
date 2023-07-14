@@ -73,6 +73,14 @@ class FlutterRoutePickerDelegate : NSObject, AVRoutePickerViewDelegate {
     }
 
     func routePickerViewDidEndPresentingRoutes(_ routePickerView: AVRoutePickerView) {
-        _methodChannel.invokeMethod("onClosePickerView", arguments: nil)
+       if let currentOutputRoute = AVAudioSession.sharedInstance().currentRoute.outputs.first {
+            let outputRouteInfo: [String: Any] = [
+                "portName": currentOutputRoute.portName,
+                "portType": currentOutputRoute.portType,
+            ]
+            _methodChannel.invokeMethod("onClosePickerView", arguments: outputRouteInfo)
+        } else {
+            _methodChannel.invokeMethod("onClosePickerView", arguments: nil)
+        }
     }
 }

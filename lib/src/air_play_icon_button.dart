@@ -58,7 +58,7 @@ class AirPlayIconButton extends StatelessWidget {
             width: tappableAreaSize,
             tintColor: color ?? iconTheme.color,
             activeTintColor: color ?? iconTheme.color,
-            onClosePickerView: onClosePickerView,
+            onClosePickerView: (_) => onClosePickerView,
             onShowPickerView: onShowPickerView,
           ),
         ),
